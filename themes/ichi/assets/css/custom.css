@@ -1,0 +1,10 @@
+/*
+ * Custom css for BeBoPr's blog.
+ * By Sander Laarhoven ;)
+ */
+
+/* Add some margin to image titles. */ 
+.imageblock>.title {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
