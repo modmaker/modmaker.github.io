@@ -7,10 +7,12 @@ The 16-pin *J5 expansion connector* on the *BeBoPr*, *BeBoPr+* and *BeBoPr++* bo
 
 image::http://imageshack.com/a/img673/4877/45wZPE.jpg[caption="Image 1 - ", title="J5-BOB, a small J5 breakout board for the BeBoPrs", width="640"]
 
+
 ==== Terminal Blocks
 Each of the five terminal blocks contains the **ST**e**P**, **DIR**ection, **ENA**ble and **COM**mon signals for an axis. The numbering and legend on the board prevent mistakes when changing the wiring in the field.
 
 image::http://imageshack.com/a/img661/9599/fEKKi3.jpg[caption="Image 2 - ", title="Example Leadshine and Nema-23 motor driver hookup", width="640"]
+
 
 ==== Emergency Stop
 The BeBoPr++ has an integrated emergency stop (ESTOP) circuit that also affects the signals to the extension board(s). When ESTOP is active, all output drivers are disabled (__tri-stated__) and the active low stepper-enable signal from the BeBoPr is pulled high.
@@ -28,6 +30,7 @@ All signals on the terminal blocks come straight from the BeBoPr, except the ena
 Like many of the other BeBoPr extension boards, the J5-BOB can be attached directly to the BeBoPr, or via a short ribboncable.
 
 image::http://imageshack.com/a/img538/7312/XLVr7Y.jpg[caption="Image 3 - ", title="BeBoPr++ with plug-in version of the J5-BOB mounted", width="640"]
+
 
 When mounting the board as a plug-in module, two hex spacers are used between the BeBoPr and the J5-BOB, escuring the board in place. Female connectors on the bottom of the breakout board attach directly to J5 on the BeBoPr. This is the most common configuration, but if the location is inconvenient, or if a DECAMUX is used to increase the number of outputs, the J5-BOB can also be connected via a ribbon cable.
 
