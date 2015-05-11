@@ -1,10 +1,24 @@
 {
   "meta": {
-    "username": "put your username here",
-    "repositoryName": "put your repository name here",
-    "branch": "master"
+    "username":"modmaker",
+    "repositoryName":"modmaker.github.io",
+    "branch":"master",
+    "cname":"blog.bebopr.info"
+  },
+  "site": {
+    "title":"BeBoPr++",
+    "description":"The BeBoPr is an BeagleBone interface 'cape' that provides engineers with a flexible and extensible solution for automating machines. Common to all these machines is the use of stepper motors and various other sensors and actuators.\nExamples of applications are: 3D printers, lathes, mills, laser engravers and cutters, industrial controls running 24/7 and some machines that have yet to be invented.",
+    "googleAnalytics":"UA-44263365-2",
+    "disqus":"baslaarhoven",
+    "url":"http://blog.bebopr.info"
+  },
+  "socialnetwork": {
+    "email":"bebopr@xs4all.nl",
+    "twitter":"bebopr3",
+    "github":"modmaker"
   },
   "theme": {
-    "name": "Casper"
+    "name":"ichi",
+    "url":"//blog.bebopr.info/themes/ichi"
   }
 }
