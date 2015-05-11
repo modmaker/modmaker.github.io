@@ -1,0 +1,41 @@
+= NEW: J5 Breakout Board.
+:published_at: 2015-03-15
+:hp-tags: J5-BOB, BeBoPr++, BeBoPr
+
+
+The 16-pin *J5 expansion connector* on the *BeBoPr*, *BeBoPr+* and *BeBoPr++* boards can be used to connect *external stepper drivers*. Instead of having to find a proper ribbon-cable, split it into individual wires and connect these to the proper terminals, the J5-BOB makes connecting external stepper drivers more straight forward. Industrial quality push-in terminal blocks, one for each axis, provide for easy and reliable wiring.
+
+image::http://imageshack.com/a/img673/4877/45wZPE.jpg[caption="Image 1 - ", title="J5-BOB, a small J5 breakout board for the BeBoPrs", width="640"]
+
+==== Terminal Blocks
+Each of the five terminal blocks contains the **ST**e**P**, **DIR**ection, **ENA**ble and **COM**mon signals for an axis. The numbering and legend on the board prevent mistakes when changing the wiring in the field.
+
+image::http://imageshack.com/a/img661/9599/fEKKi3.jpg[caption="Image 2 - ", title="Example Leadshine and Nema-23 motor driver hookup", width="640"]
+
+==== Emergency Stop
+The BeBoPr++ has an integrated emergency stop (ESTOP) circuit that also affects the signals to the extension board(s). When ESTOP is active, all output drivers are disabled (__tri-stated__) and the active low stepper-enable signal from the BeBoPr is pulled high.
+
+==== Driver Enable
+The stepper enable signal that can be used to enable the stepper drivers has an on board buffer with optional inverter. This way the single output can drive all five axes at once. Because some drivers have an enable input that actually functions as disable, the J5-BOB can be assembled to either drive an enable input or a disable one.
+
+==== Configuration
+Because not all stepper drivers are created equal, the J5-BOB can be configured to drive the inputs of the stepper drivers in several ways. In most situations, the motor drivers have opto isolated inputs with a common anode and an inverted enable input. In that case the *SINK-DISABLE configuration* is required. Image 1 shows a picture of a board configured this way, with the SINK jumper, R1 and Q3 mounted.
+
+==== Output Signals
+All signals on the terminal blocks come straight from the BeBoPr, except the enable signal that is buffered on the J5-BOB. The signals are outputs of 74AHCT125 buffers, using 5 Volt CMOS levels when not tri-stated. See the https://github.com/modmaker/BeBoPr-plus-plus/blob/master/BeBoPr%2B%2B%20User%20Manual.pdf[BeBoPr++ usermanual] for more detail. 
+
+==== Mounting
+Like many of the other BeBoPr extension boards, the J5-BOB can be attached directly to the BeBoPr, or via a short ribboncable.
+
+image::http://imageshack.com/a/img538/7312/XLVr7Y.jpg[caption="Image 3 - ", title="BeBoPr++ with plug-in version of the J5-BOB mounted", width="640"]
+
+When mounting the board as a plug-in module, two hex spacers are used between the BeBoPr and the J5-BOB, escuring the board in place. Female connectors on the bottom of the breakout board attach directly to J5 on the BeBoPr. This is the most common configuration, but if the location is inconvenient, or if a DECAMUX is used to increase the number of outputs, the J5-BOB can also be connected via a ribbon cable.
+
+
+==== Design Information
+More information, including the schematics, can be found on the https://github.com/modmaker/J5-BOB[J5-BOB page] on github.
+
+
+==== Compatibility
+The J5-BOB is compatible with the original BeBoPr, the BeBoPr+ and the BeBoPr++ boards.
+On the BeBoPr, jumper JP4 and on the BeBoPr and BeBoPr+, jumper J21 have to be closed.
