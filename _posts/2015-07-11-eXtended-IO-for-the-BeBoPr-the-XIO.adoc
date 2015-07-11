@@ -1,0 +1,47 @@
+= eXtended I/O for the BeBoPr++, the XIO.
+:published_at: 2015-07-11
+:hp-tags: BeBoPr++, BeBoPr
+
+An idea that has kept spooking through my head for the last couple of months was to further extend the I/O capabilities of the BeBoPr++.
+
+==== Summary
+Recently I have worked on a project that needed external stepper drivers, postion feedback via encoders, and some general purpose digital outputs. The application uses 5 axes, so besides the 5 stepper outputs, 15 inputs were needed for the encoder signals (A, B and a home signal).
+
+I built a prototype using a DECAMUX with two J5-BOB boards to create the proper amount of outputs, but the configution contained 4 printed circuit boards besides the BeBoPr++, and many interconnecting cables and wires.
+
+Although fully functional, a simpler solution was needed and the idea of a single board solution emerged. This board was then designed and built.
+
+==== Single board
+Developing a new printed circuit board for a one-off project with a tight budget was hardly realistic. So the idea came up to create a general purpose solution that could also be used for other projects. During the last couple of months I've seen demand for control over more than the 10 axes that the DECAMUX can provide.
+
+Since the single board solution would contain the DECAMUX functionality, why not expand it to more than 10 axes and allow for some future expansion? This became the XIO board. Up to 40 general purpose outputs, 20 stepper motors, or a combination of these.
+
+image::http://imageshack.com/a/img673/1395/ZdPC1h.png[caption="Image 1 - ", title="The XIO, an eXtended I/O board for the BeBoPr++", width="640"]
+
+The image above shows a drawing of the final board. A first prototype has been assembled and tested and is fully functional.
+
+==== Stepper Outputs
+A single J5-BOB comes integrated in the XIO. Configuration of the enable signal on the XIO is done by two jumpers. Opposed to configuration by removing components, the way it's done on the original DIY J5-BOB.
+
+==== GP Outputs
+Many control applications need to control some actuators (e.g. pneumatic valves), and sometimes more than the ones available directly on the BeBoPr.
+
+On the XIO, 6 digital outputs are capable of controlling inductive loads (3-5W) at 12 to 24 Volt operating voltage. This way plain resistive loads, or small inductive valves can connect directly to the 2-pin headers.
+
+==== Inputs
+Wired to 5 connectors with 5 Volt supply and 3 inputs each, the inputs can be used for encoders, or as general purpose inputs.
+
+The encoders signals are sequentially sampled and then fed to one of the BeBoPr limit switch inputs. The ZMIN input was used for this purpose. At this rate the debounce filter on the inputs that was active beforehad to be turned off. The sequential scan rate is determined by the PRU cycle time, currently 8 us. So for 15 inputs, 120 us is needed. This limits the sample rate to just above 8 kHz. The maximum encoder pulse frequency that can be measured properly is then 2 kHz (25% of 8 kHz) because at least 4 samples of the A and B signals are needed for each pulse.
+
+==== Expansion
+The XIO connects to the BeBoPr++ via the usual 16-wire ribbon cable. The same type of cable that is used for connecting the other expansion boards (as there are the DECAMUX, TAKE-5, XTRUDR, PEPPER and J5-BOB).
+
+The XIO has 3 J5-style output connectors, so three expansion boards can connect to the board. But often the on-board functionality will suffice.
+
+Instead of connecting boards via a ribbon cable, it's also possible to attach two boards directly onto the XIO.
+
+==== Cascading
+The third output connector has an extra feature that allows connection of a DECAMUX, or second XIO to this port. If the CASCADE jumper is not installed, the port acts as a normal output connector. But if the CASCADE option is activated by the jumper, a second bus splitter (DECAMUX or XIO) can be used on the third port, further increasing the number of outputs.
+
+==== Software
+The XIO can be used as a direct replacement for a DECAMUX. So all software that works with a DECAMUX will work with a XIO. Expansion beyond the amount of signals that a DECAMUX can handle (i.e. more than 10 axes), needs changes to the PRU code. For the 'stepper.bin' code there is beta software that can handle 5 stepper axes, 15 inputs, 6 digital outputs (all on-board) and 20 more outputs (off-board via DECAMUX or second XIO).
