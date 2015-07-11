@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>eXtended I/O for the BeBoPr++, the XIO. - BeBoPr++ for machine control.</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="eXtended I/O for the BeBoPr++, the XIO.">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="eXtended I/O for the BeBoPr++, the XIO.">
+    <meta property="og:description" content="">
+
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link rel="stylesheet" type="text/css" href="//blog.bebopr.info/themes/BeBoPr/assets/css/bebopr.css?v=1.0.0" />
+
+    <link rel="canonical" href="http://blog.bebopr.info/2015/07/11/eXtended-IO-for-the-BeBoPr-the-XIO.html" />
+    
+    <meta property="og:site_name" content="BeBoPr++ for machine control." />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="eXtended I/O for the BeBoPr++, the XIO." />
+    <meta property="og:description" content="An idea that has kept spooking through my head for the last couple of months was to further extend the I/O capabilities of the BeBoPr++. Summary Recently I have worked on a project that needed external stepper drivers, postion..." />
+    <meta property="og:url" content="http://blog.bebopr.info/2015/07/11/eXtended-IO-for-the-BeBoPr-the-XIO.html" />
+    <meta property="article:published_time" content="2015-07-10T22:00:00.000Z" />
+    <meta property="article:modified_time" content="2015-07-11T22:55:06.840Z" />
+    <meta property="article:tag" content="BeBoPr++" />
+    <meta property="article:tag" content="BeBoPr" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="eXtended I/O for the BeBoPr++, the XIO." />
+    <meta name="twitter:description" content="An idea that has kept spooking through my head for the last couple of months was to further extend the I/O capabilities of the BeBoPr++. Summary Recently I have worked on a project that needed external stepper drivers, postion..." />
+    <meta name="twitter:url" content="http://blog.bebopr.info/2015/07/11/eXtended-IO-for-the-BeBoPr-the-XIO.html" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "BeBoPr++ for machine control.",
+    "author": {
+        "@type": "Person",
+        "name": "Bas Laarhoven",
+        "image": "https://avatars.githubusercontent.com/u/978335?v=3",
+        "url": "undefined/author/undefined",
+        "sameAs": ""
+    },
+    "headline": "eXtended I/O for the BeBoPr++, the XIO.",
+    "url": "http://blog.bebopr.info/2015/07/11/eXtended-IO-for-the-BeBoPr-the-XIO.html",
+    "datePublished": "2015-07-10T22:00:00.000Z",
+    "dateModified": "2015-07-11T22:55:06.840Z",
+    "keywords": "BeBoPr++,  BeBoPr",
+    "description": "An idea that has kept spooking through my head for the last couple of months was to further extend the I/O capabilities of the BeBoPr++. Summary Recently I have worked on a project that needed external stepper drivers, postion..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost ?" />
+    <link rel="alternate" type="application/rss+xml" title="BeBoPr++ for machine control." href="http://blog.bebopr.info/rss" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
+
+</head>
+<body class="post-template tag-BeBoPr tag-BeBoPr no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    <header class="panel-cover panel-cover--collapsed " style="background-image: url(http://imageshack.com/a/img819/2508/0k4t.jpg)">
+      <div class="panel-main">
+    
+        <div class="panel-main__inner panel-inverted">
+        <div class="panel-main__content">
+    
+            <h1 class="panel-cover__title panel-title"><a href="http://blog.bebopr.info" title="link to homepage for BeBoPr++ for machine control.">BeBoPr++ for machine control.</a></h1>
+            <hr class="panel-cover__divider" />
+            <p class="panel-cover__description">The BeBoPr is a BeagleBone interface &#x27;cape&#x27; that provides engineers with a flexible and extensible solution for automating machines. Common to all these machines is the use of stepper motors and various other sensors and actuators.
+    Examples of applications are: 3D printers, lathes, mills, laser engravers and cutters, 24/7 industrial controls, and some machines that are not invented yet.</p>
+            <hr class="panel-cover__divider panel-cover__divider--secondary" />
+    
+            <div class="navigation-wrapper">
+    
+              <nav class="cover-navigation cover-navigation--primary">
+                <ul class="navigation">
+                  <li class="navigation__item"><a href="http://blog.bebopr.info/#blog" title="link to BeBoPr++ for machine control. blog" class="blog-button">Blog</a></li>
+                </ul>
+              </nav>
+    
+              
+              
+              <nav class="cover-navigation navigation--social">
+                <ul class="navigation">
+              
+              
+                  <!-- Twitter -->
+                  <li class="navigation__item">
+                    <a href="bebopr3" title="Twitter account">
+                      <i class='icon icon-social-twitter'></i>
+                      <span class="label">Twitter</span>
+                    </a>
+                  </li>
+              
+              
+                  <!-- Github -->
+                  <li class="navigation__item">
+                    <a href="modmaker" title="Github account">
+                      <i class='icon icon-social-github'></i>
+                      <span class="label">Github</span>
+                    </a>
+                  </li>
+                  </li>
+              
+              
+              
+              
+              
+                  <!-- Email -->
+                  <li class="navigation__item">
+                    <a href="mailto:bebopr@xs4all.nl" title="Email bebopr@xs4all.nl">
+                      <i class='icon icon-mail'></i>
+                      <span class="label">Email</span>
+                    </a>
+                  </li>
+              
+                </ul>
+              </nav>
+              
+    
+            </div>
+    
+          </div>
+    
+        </div>
+    
+        <div class="panel-cover--overlay"></div>
+      </div>
+    </header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            
+
+  <article class="post-container post-container--single">
+
+    <header class="post-header">
+      <div class="post-meta">
+        <time datetime="11 Jul 2015" class="post-meta__date date">11 Jul 2015</time> &#8226; <span class="post-meta__tags tags">on <a href="http://blog.bebopr.info/tag/BeBoPr">BeBoPr++</a>, <a href="http://blog.bebopr.info/tag/BeBoPr"> BeBoPr</a></span>
+        <span class="post-meta__author author"><img src="https://avatars.githubusercontent.com/u/978335?v=3" alt="profile image for Bas Laarhoven" class="avatar post-meta__avatar" /> by Bas Laarhoven</span>
+      </div>
+      <h1 class="post-title">eXtended I/O for the BeBoPr++, the XIO.</h1>
+    </header>
+
+    <section class="post tag-BeBoPr tag-BeBoPr">
+      <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>An idea that has kept spooking through my head for the last couple of months was to further extend the I/O capabilities of the BeBoPr++.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_summary">Summary</h4>
+<div class="paragraph">
+<p>Recently I have worked on a project that needed external stepper drivers, postion feedback via encoders, and some general purpose digital outputs. The application uses 5 axes, so besides the 5 stepper outputs, 15 inputs were needed for the encoder signals (A, B and a home signal).</p>
+</div>
+<div class="paragraph">
+<p>I built a prototype using a DECAMUX with two J5-BOB boards to create the proper amount of outputs, but the configution contained 4 printed circuit boards besides the BeBoPr++, and many interconnecting cables and wires.</p>
+</div>
+<div class="paragraph">
+<p>Although fully functional, a simpler solution was needed and the idea of a single board solution emerged. This board was then designed and built.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_single_board">Single board</h4>
+<div class="paragraph">
+<p>Developing a new printed circuit board for a one-off project with a tight budget was hardly realistic. So the idea came up to create a general purpose solution that could also be used for other projects. During the last couple of months I&#8217;ve seen demand for control over more than the 10 axes that the DECAMUX can provide.</p>
+</div>
+<div class="paragraph">
+<p>Since the single board solution would contain the DECAMUX functionality, why not expand it to more than 10 axes and allow for some future expansion? This became the XIO board. Up to 40 general purpose outputs, 20 stepper motors, or a combination of these.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="http://imageshack.com/a/img673/1395/ZdPC1h.png" alt="ZdPC1h.png" width="640">
+</div>
+<div class="title">Image 1 - The XIO, an eXtended I/O board for the BeBoPr++</div>
+</div>
+<div class="paragraph">
+<p>The image above shows a drawing of the final board. A first prototype has been assembled and tested and is fully functional.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_stepper_outputs">Stepper Outputs</h4>
+<div class="paragraph">
+<p>A single J5-BOB comes integrated in the XIO. Configuration of the enable signal on the XIO is done by two jumpers. Opposed to configuration by removing components, the way it&#8217;s done on the original DIY J5-BOB.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_gp_outputs">GP Outputs</h4>
+<div class="paragraph">
+<p>Many control applications need to control some actuators (e.g. pneumatic valves), and sometimes more than the ones available directly on the BeBoPr.</p>
+</div>
+<div class="paragraph">
+<p>On the XIO, 6 digital outputs are capable of controlling inductive loads (3-5W) at 12 to 24 Volt operating voltage. This way plain resistive loads, or small inductive valves can connect directly to the 2-pin headers.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_inputs">Inputs</h4>
+<div class="paragraph">
+<p>Wired to 5 connectors with 5 Volt supply and 3 inputs each, the inputs can be used for encoders, or as general purpose inputs.</p>
+</div>
+<div class="paragraph">
+<p>The encoders signals are sequentially sampled and then fed to one of the BeBoPr limit switch inputs. The ZMIN input was used for this purpose. At this rate the debounce filter on the inputs that was active beforehad to be turned off. The sequential scan rate is determined by the PRU cycle time, currently 8 us. So for 15 inputs, 120 us is needed. This limits the sample rate to just above 8 kHz. The maximum encoder pulse frequency that can be measured properly is then 2 kHz (25% of 8 kHz) because at least 4 samples of the A and B signals are needed for each pulse.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_expansion">Expansion</h4>
+<div class="paragraph">
+<p>The XIO connects to the BeBoPr++ via the usual 16-wire ribbon cable. The same type of cable that is used for connecting the other expansion boards (as there are the DECAMUX, TAKE-5, XTRUDR, PEPPER and J5-BOB).</p>
+</div>
+<div class="paragraph">
+<p>The XIO has 3 J5-style output connectors, so three expansion boards can connect to the board. But often the on-board functionality will suffice.</p>
+</div>
+<div class="paragraph">
+<p>Instead of connecting boards via a ribbon cable, it&#8217;s also possible to attach two boards directly onto the XIO.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_cascading">Cascading</h4>
+<div class="paragraph">
+<p>The third output connector has an extra feature that allows connection of a DECAMUX, or second XIO to this port. If the CASCADE jumper is not installed, the port acts as a normal output connector. But if the CASCADE option is activated by the jumper, a second bus splitter (DECAMUX or XIO) can be used on the third port, further increasing the number of outputs.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_software">Software</h4>
+<div class="paragraph">
+<p>The XIO can be used as a direct replacement for a DECAMUX. So all software that works with a DECAMUX will work with a XIO. Expansion beyond the amount of signals that a DECAMUX can handle (i.e. more than 10 axes), needs changes to the PRU code. For the 'stepper.bin' code there is beta software that can handle 5 stepper axes, 15 inputs, 6 digital outputs (all on-board) and 20 more outputs (off-board via DECAMUX or second XIO).</p>
+</div>
+</div>
+    </section>
+
+  </article>
+
+  
+  <section class="post-comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'bebopr-blog'; // required: replace example with your forum shortname
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </section>
+  
+
+
+
+            <footer class="footer">
+                <span class="footer__copyright">&copy; 2015. All rights reserved.</span>
+                <span class="footer__copyright"><a href="http://uno.daleanthony.com" title="link to page for Uno Ghost theme">Uno theme</a> by <a href="http://daleanthony.com" title="link to website for Dale-Anthony">Dale-Anthony</a></span>
+                <span class="footer__copyright">Proudly published with <a href="http://hubpress.io" title="link to Hubpress website">Hubpress</a></span>
+            </footer>
+        </div>
+    </div>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js?v="></script> 
+      <script type="text/javascript">
+        jQuery( document ).ready(function() {
+          // change date with ago
+          jQuery('ago.ago').each(function(){
+            var element = jQuery(this).parent();
+            element.html( moment(element.text()).fromNow());
+          });
+        });
+
+        hljs.initHighlightingOnLoad();      
+      </script>
+
+    <script type="text/javascript" src="//blog.bebopr.info/themes/BeBoPr/assets/js/main.js?v=1.0.0"></script>
+    
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-44263365-2', 'auto');
+    ga('send', 'pageview');
+
+    </script>
+
+</body>
+</html>
