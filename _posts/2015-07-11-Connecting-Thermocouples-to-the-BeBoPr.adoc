@@ -1,0 +1,64 @@
+= Connecting Thermocouples to the BeBoPr++
+:published_at: 2015-07-11
+:hp-tags: BeBoPr++, BeBoPr, Thermocouple, ADC, ADS1115
+
+A while ago I was playing with the ADS1115, the 16-bit 'big' brother of the ADS1015 that is present on the BeBoPr++ and can be used on the XTRUDR. I was wondering whether it would be possible to use this converter with thermocouples instead of thermistors.
+After some thinking, I believed it would be possible to read three thermocouples _and_ the cold junction temperature with a single converter.
+
+TI does have a converter for thermocouples in the same family, the ADS1118, but it uses SPI instead of I2C and can handle only two thermocouples.
+
+==== Summary
+
+Reading thermocouples with an ADS1115 seems to be possible and relatively cheap. Three differential thermocouple measurements and the cold junction are all handled by a single converter.
+
+The input filter with clamping circuitry protects the ADC against accidental overvoltage (e.g. short circuits against a 12 or 24 Volt supply). It will probably also do some good against ESD into the thermocouples.
+
+Although I had to sacrifice simple broken wire detection, three instead of two thermocouples and cold junction temperature measurement should tip the scale for low cost applications.
+
+==== Thermocouples
+
+The often used type K thermocouple has a pretty linear transfer function of around 41 micro-Volt per Kelvin. If the ADS1115 is used in its most sensitive range, that results in around 5 bits per Kelvin, or 0.2 K resolution.
+
+The sub milli-Volt thermocouple signals are read in differential mode, at +/- 256 mV full scale.
+The negative sides of the thermocouples are held at an offset of around 0.7 Volt. This makes it possible to measure values below the cold junction temperature. And it reduces measurement errors in the input filter.
+
+==== Cold junction compensation
+
+The cold junction temperature is measured by the ADC in single ended mode, at 1024 mV full scale. At room temperature, the pn-juncrion reads around 0.63 V with a slope of -1.8 mV / Kelvin.
+Software is used to read the cold junction temperature and add it to the temperatuees measured for the thermocouples.
+
+==== Input filter
+
+The offset on the negative inputs
+
+==== Module
+
+The module is pin compatible with the Adafruit ADS1x15 breakout board that is used on the XTRUDR.
+Besides to the ADC, a low pass filter with over voltage clamp circuit and a cold junction temperature measurement diode are present.
+
+To reduce the chance of measurement errors, the number of cold junctions between a thermocouple and the ADC has been minimized by connecting the thermouples directly to the module. A tiny screw clamp connector on the module is used to directly connects the thermocouple wires. This connector acts as the cold junction and the temperature of the connector is measured with a forward biased pn-junction.
+
+==== Broken wire detection
+
+One remaining issue is the lack of a proper broken wire detection. Right now, a disconnected thermocouple results in an undetermined temperature reading.
+First results show that a slow temperature rise, starting at around 50 Kelvin / minute is to be expected. This is in accordance with the theory of feeding the ADC's bias voltage of around 0.7 Volt via 100 MOhm into the 10uF filter capacitor.
+The resulting temperature depends on the difference between the cold junction reference voltage and the ADC's internal bias voltage (of around 0.7 Volt).
+
+==== Accuracy
+
+
+
+==== Pros
+- Inputs protected agains short circuits to 12-24 Volt supply.
+- Input filter and clamping may give some ESD protection.
+- Interfaces three thermocouples with single converted.
+- Single 5 Volt supply.
+- Can be used as plug-in module on the XTRUDR.
+- Can be used stand-alone with a BeBoPr++.
+- Low cost.
+
+==== Cons
+- Small measurement error caused by input resistors. Can be reduced by software compensation.
+- Thermocouple has to be isolated from environment (floating).
+- Cold junction compensation may need single point calibration for better accuracy.
+- No broken wire detection.
